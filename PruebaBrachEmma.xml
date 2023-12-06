@@ -1,0 +1,220 @@
+<%@page import="java.util.logging.Logger"%>
+<%@page import="java.util.List"%>
+<%@page import="Modelo.Role"%>
+<%@page import="Modelo.ListasDao"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>BITACORA IMPLEMENTACIONES</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="Pooled Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+              Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <!-- Bootstrap Core CSS -->
+        <link href="CSS/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <!-- Custom CSS -->
+        <link href="CSS/style.css" rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="CSS/morris.css" type="text/css"/>
+        <!-- Graph CSS -->
+        <link href="CSS/font-awesome.css" rel="stylesheet"> 
+        <!-- jQuery -->
+        <script src="js/jquery-2.1.4.min.js"></script>
+        <!-- //jQuery -->
+        <link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css'/>
+        <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+        <!-- lined-icons -->
+        <link rel="stylesheet" href="CSS/icon-font.min.css" type='text/css' />
+        <!-- //lined-icons -->
+        <%
+            Logger logger = Logger.getLogger(getClass().getName());
+            ListasDao listas = new ListasDao();
+        %>
+    </head> 
+    <body>
+        <div class="page-container">
+            <!--/content-inner-->
+            <div class="left-content">
+                <div class="mother-grid-inner">
+                    <!--header start here-->
+                    <div class="header-main">
+                        <div class="logo-w3-agile">
+                            <h1><a href="index.jsp">BIENVENIDO</a></h1>
+                        </div>
+                        <div class="clearfix"> </div>	
+                    </div>
+                    <!--heder end here-->
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.jsp">Home</a><i class="fa fa-angle-right"></i>INGRESAR PERSONA
+                    </ol>
+                    <!--grid-->
+                    <div class="validation-system">
+                        <div class="validation-form">
+                            <form action="regPersona" method="post">
+                                <div class="vali-form">
+                                    <div class="col-md-4 form-group1">
+                                        <label class="control-label">Codigo Persona</label>
+                                        <input type="text" placeholder="" required="" name="codigo_persona">
+                                    </div>
+                                    <div class="clearfix"> </div>
+                                </div>
+                                <div class="vali-form">
+                                    <div class="col-md-6 form-group1 form-last">
+                                        <label class="control-label">Primer Nombre</label>
+                                        <input type="text" placeholder="" required="" name="primer_nombre">
+                                    </div>
+                                    <div class="col-md-6 form-group1 form-last">
+                                        <label class="control-label">Segundo Nombre</label>
+                                        <input type="text" placeholder="" required="false" name="segundo_nombre">
+                                    </div>
+                                    <div class="clearfix"> </div>
+                                </div>
+                                <div class="vali-form">
+                                    <div class="col-md-6 form-group1">
+                                        <label class="control-label">Primer Apellido</label>
+                                        <input type="text" placeholder="" required="" name="primer_apellido">
+                                    </div>
+                                    <div class="col-md-6 form-group1">
+                                        <label class="control-label">Segundo Apellido</label>
+                                        <input type="text" placeholder="" required="false" name="segundo_apellido">
+                                    </div>
+                                    <div class="clearfix"> </div>
+                                </div>
+                                <div class="vali-form">
+                                    <div class="col-md-6 form-group2 group-mail">
+                                        <label class="control-label">Role</label>
+                                        <select id="id_role" name="id_role">
+                                            <option value = "-1" disabled="true" selected="true">--Seleccione--</option>
+                                            <%
+                                                try {
+                                                    List<Role> listaRol = listas.listaRoles();
+                                                    for (Role r : listaRol) {
+                                            %>
+                                            <option value="<%=r.getId_role()%>"><%=r.getCod_role() + " - " + r.getNom_role()%></option>
+                                            <%
+                                                    }
+                                                } catch (Exception e) {
+                                                }
+                                            %>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 form-group1">
+                                        <label class="control-label">Email</label>
+                                        <input type="text" placeholder="" required="" name="email">
+                                    </div>
+                                    <div class="clearfix"> </div>
+                                </div>
+                                <div class="clearfix"> </div>
+                                <div class="clearfix"> </div>
+                                <div class="col-md-12 form-group">
+                                    <button type="submit" class="btn btn-primary" value="Ingresar" id="regPersona" name="regPersona">Ingresar</button>
+                                    <button type="reset" class="btn btn-default" value="Cancelar" id="regPersona" name="regPersona">Cancelar</button>
+                                </div>
+                                <div class="clearfix"> </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!--//grid-->
+                    <!-- script-for sticky-nav -->
+                    <script>
+                        $(document).ready(function () {
+                            var navoffeset = $(".header-main").offset().top;
+                            $(window).scroll(function () {
+                                var scrollpos = $(window).scrollTop();
+                                if (scrollpos >= navoffeset) {
+                                    $(".header-main").addClass("fixed");
+                                } else {
+                                    $(".header-main").removeClass("fixed");
+                                }
+                            });
+                        });
+                    </script>
+                    <!-- /script-for sticky-nav -->
+                    <!--inner block start here-->
+                    <div class="inner-block">
+
+                    </div>
+                    <!--inner block end here-->
+                    <!--copy rights start here-->
+                    <div class="copyrights">
+                        <!--p>© 2016 Pooled. All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p-->
+                    </div>	
+                    <!--COPY rights end here-->
+                </div>
+            </div>
+            <!--//content-inner-->
+            <!--/sidebar-menu-->
+            <div class="sidebar-menu">
+                <header class="logo1">
+                    <a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a> 
+                </header>
+                <div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
+                <div class="menu">
+                    <ul id="menu" >
+                        <li><a href="index.jsp"><i class="fa fa-cogs"></i> <span>HOME</span><div class="clearfix"></div></a></li>
+                        <li id="menu-imp" ><a href="#"><i class="fa fa-list-ul" aria-hidden="true"></i><span> IMPLEMETACION</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
+                            <ul id="menu-imp-sub" >
+                                <li id="menu-imp-opciones" ><a href="insImplementacion.jsp">INGRESAR</a></li>
+                                <li id="menu-imp-opciones" ><a href="listaImplementaciones.jsp">CONSULTAR</a></li>
+                            </ul>
+                        </li>
+                        <li id="menu-imp" ><a href="#"><i class="fa fa-users" aria-hidden="true"></i><span> PERSONAS</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
+                            <ul id="menu-imp-sub" >
+                                <li id="menu-imp-opciones" ><a href="insPersona.jsp">INGRESAR</a></li>
+                                <li id="menu-imp-opciones" ><a href="listaPersona.jsp">CONSULTAR</a></li>
+                            </ul>
+                        </li>
+                        <li id="menu-imp" ><a href="#"><i class="fa fa-tags" aria-hidden="true"></i><span> ROLES</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
+                            <ul id="menu-imp-sub" >
+                                <li id="menu-imp-opciones" ><a href="insRole.jsp">INGRESAR</a></li>
+                                <li id="menu-imp-opciones" ><a href="listaRole.jsp">CONSULTAR</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clearfix"></div>		
+        </div>
+        <script>
+            var toggle = true;
+
+            $(".sidebar-icon").click(function () {
+                if (toggle)
+                {
+                    $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+                    $("#menu span").css({"position": "absolute"});
+                }
+                else
+                {
+                    $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+                    setTimeout(function () {
+                        $("#menu span").css({"position": "relative"});
+                    }, 400);
+                }
+
+                toggle = !toggle;
+            });
+        </script>
+        <!--js -->
+        <script src="js/jquery.nicescroll.js"></script>
+        <script src="js/scripts.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- /Bootstrap Core JavaScript -->
+        <script>
+            $(document).ready(function ()
+            {
+                if ($("select option:selected").val() == "-1") {
+                    $("#regPersona").attr("disabled", true);
+                }
+
+                $('select').on('change', function () {
+                    if ($("#id_role option:selected").val() != "-1") {
+                        $("#regPersona").attr("disabled", false);
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
