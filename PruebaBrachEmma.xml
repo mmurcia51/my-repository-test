@@ -211,7 +211,7 @@
 
                 $('select').on('change', function () {
                     if ($("#id_role option:selected").val() != "-1") {
-                        $("#regPersona").attr("disabled", false);
+                        $("#regPersona").attr("disabled", false); Alejoooooo
                     }
                 });
             });
